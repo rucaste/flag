@@ -1,0 +1,6 @@
+
+function Trotinetes() {
+
+    this.trotinetes = [];
+
+}

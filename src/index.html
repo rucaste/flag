@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Trotinete</title>
+    <script src="js/Trotinetes.js"></script>
+    <script src="js/Modelos.js"></script>
+    <script src="js/Users.js"></script>
     <script src="js/Trotinete.js"></script>
     <script src="js/Modelo.js"></script>
     <script src="js/Posicao.js"></script>
@@ -12,6 +15,24 @@
 </head>
 <body style="text-align: center">
     <h1>fsad</h1>
-    <canvas style="width: 50%; height: 200px; background: yellowgreen"></canvas>
+    <canvas style="width: 500px; height: 500px; background: yellowgreen" id="canvas"></canvas>
+
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext('2d');
+        var users = app.trotinapp.users.users;
+
+        for(var i = 0; i < Array.from(users.keys()).length; i++){
+            var posicao = users.get(Array.from(users.keys())[i]).posicaoAtual;
+            console.log(posicao);
+
+            ctx.fillStyle = 'red';
+            /*ctx.fillRect(posicao.latitude, posicao.longitude, 10, 10);*/
+            ctx.beginPath();
+            ctx.arc(posicao.latitude, posicao.longitude, 3, 0, Math.PI *2, false);
+            ctx.fill();
+        }
+
+    </script>
 </body>
 </html>
