@@ -12,7 +12,9 @@ class TrotinApp{
         }
 
         for(var i = 0; i < 15; i++){
-            this.trotinetes.trotinetes.push(new Trotinete(i, this.modelos[Math.floor(Math.random() * 3)]))
+            var trot = new Trotinete(i, this.modelos[Math.floor(Math.random() * 3)])
+            this.trotinetes.trotinetes.push(trot);
+            trot.isDisponivel = Math.floor(Math.random() + 0.5);
         }
 
         for(var i = 0; i < 5; i++){

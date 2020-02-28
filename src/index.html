@@ -15,7 +15,7 @@
 </head>
 <body style="text-align: center">
     <h1>fsad</h1>
-    <canvas style="width: 500px; height: 500px; background: yellowgreen" id="canvas"></canvas>
+    <canvas style="width: 900px; height: 500px; background: yellowgreen" id="canvas"></canvas>
 
     <script>
         var canvas = document.getElementById("canvas");
@@ -24,12 +24,22 @@
 
         for(var i = 0; i < Array.from(users.keys()).length; i++){
             var posicao = users.get(Array.from(users.keys())[i]).posicaoAtual;
-            console.log(posicao);
 
             ctx.fillStyle = 'red';
             /*ctx.fillRect(posicao.latitude, posicao.longitude, 10, 10);*/
             ctx.beginPath();
-            ctx.arc(posicao.latitude, posicao.longitude, 3, 0, Math.PI *2, false);
+            ctx.arc(posicao.latitude, posicao.longitude, 1, 0, Math.PI *2, false);
+            ctx.fill();
+        }
+
+        console.log(app.trotinapp.trotinetes.getTrotinetesDisponiveis());
+
+        for (var i = 0; i < app.trotinapp.trotinetes.getTrotinetesDisponiveis().length; i++) {
+            var posicao = app.trotinapp.trotinetes.getTrotinetesDisponiveis()[i].posicaoAtual;
+
+            ctx.fillStyle = 'blue';
+            ctx.beginPath();
+            ctx.arc(posicao.latitude, posicao.longitude, 1, 0, Math.PI * 2, true);
             ctx.fill();
         }
 

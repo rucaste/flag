@@ -7,7 +7,7 @@ function User(id, nome, nif, email) {
     this.email = email;
 
     this.saldo = 0;
-    this.posicaoAtual = new Posicao(Math.floor(5 + Math.random()*150),
+    this.posicaoAtual = new Posicao(Math.floor(5 + Math.random()*250),
         Math.floor(5 + Math.random()*150),
         Date.now());
 }
