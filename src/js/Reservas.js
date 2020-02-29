@@ -1,0 +1,7 @@
+
+
+function Reservas() {
+
+    this.reservas = [];
+
+}

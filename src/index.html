@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Trotinete</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="js/Reservas.js"></script>
+    <script src="js/Reserva.js"></script>
     <script src="js/Trotinetes.js"></script>
     <script src="js/Modelos.js"></script>
     <script src="js/Users.js"></script>
@@ -13,36 +18,109 @@
     <script src="js/TrotinApp.js"></script>
     <script src="js/App.js"></script>
 </head>
-<body style="text-align: center">
-    <h1>fsad</h1>
-    <canvas style="width: 900px; height: 500px; background: yellowgreen" id="canvas"></canvas>
 
-    <script>
-        var canvas = document.getElementById("canvas");
-        var ctx = canvas.getContext('2d');
-        var users = app.trotinapp.users.users;
+<body>
+    <div class=" bg-dark text-white p-5 mb-3">
+        <h1 style="position: relative">
+            <img width="8%" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBpZD0iQ2FwYV8xIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiBoZWlnaHQ9IjUxMnB4IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjUxMnB4Ij48Zz48cGF0aCBkPSJtMTQ3Ljc3MiAxNi42NWMwLTkuMTk2LTcuNDU1LTE2LjY1LTE2LjY1LTE2LjY1aC02Mi40Mzl2MzMuMzAxaDYyLjQzOWM5LjE5NiAwIDE2LjY1LTcuNDU1IDE2LjY1LTE2LjY1MXoiIGZpbGw9IiM1OTU5NTkiLz48cGF0aCBkPSJtNTYuMTk1IDBjLTExLjQ5NSAwLTIwLjgxMyA5LjMxOC0yMC44MTMgMjAuODEzdjIyNi44NjJoMzMuMzAxdi0yNDcuNjc1eiIgZmlsbD0iI2M4ZWE3MyIvPjxwYXRoIGQ9Im01Ni4xOTUgMGgxMi40ODh2MjQ3LjY3NWgtMTIuNDg4eiIgZmlsbD0iIzliZDA2OSIvPjxwYXRoIGQ9Im0xODYuNzgxIDQzNS43Ny0xMTEuODU0LTE2MS4wMzh2NjAuMzU4bDk0Ljc5MyAxMzUuODM4YzMuODU0IDUuNTIyIDEwLjE2MiA4LjgxMyAxNi44OTYgOC44MTNoMjczLjM1MXYtMzkuNTQ1aC0yNjQuNzI1Yy0zLjM3NS0uMDAxLTYuNTM2LTEuNjU0LTguNDYxLTQuNDI2eiIgZmlsbD0iI2M4ZWE3MyIvPjxwYXRoIGQ9Im00NTkuOTY3IDQ0MC4xOTVoLTcwLjA5NmMtMS43NzggNi4yOTItMi43NDkgMTIuOTE5LTIuNzQ5IDE5Ljc3MnMuOTcyIDEzLjQ4IDIuNzQ5IDE5Ljc3Mmg3MC4wOTZ6IiBmaWxsPSIjOWJkMDY5Ii8+PGNpcmNsZSBjeD0iNDU5Ljk2NyIgY3k9IjQ1OS45NjciIGZpbGw9IiM4MTgxODEiIHI9IjUyLjAzMyIvPjxwYXRoIGQ9Im00ODguMTEyIDQxNi4yMTRjNS4yMzEgOC4xMTUgOC4yNzkgMTcuNzcxIDguMjc5IDI4LjE0NCAwIDI4LjczNy0yMy4yOTYgNTIuMDMzLTUyLjAzMyA1Mi4wMzMtMTAuMzczIDAtMjAuMDI5LTMuMDQ4LTI4LjE0NC04LjI3OSA5LjI2MSAxNC4zNjcgMjUuMzkgMjMuODg4IDQzLjc1NCAyMy44ODggMjguNzM2IDAgNTIuMDMyLTIzLjI5NiA1Mi4wMzItNTIuMDMzIDAtMTguMzYzLTkuNTIyLTM0LjQ5My0yMy44ODgtNDMuNzUzeiIgZmlsbD0iIzU5NTk1OSIvPjxjaXJjbGUgY3g9IjQ1OS45NjciIGN5PSI0NTkuOTY3IiBmaWxsPSIjYmViZWJlIiByPSIxNS42MSIvPjxnPjxjaXJjbGUgY3g9IjUyLjAzMyIgY3k9IjQ1OS45NjciIGZpbGw9IiM4MTgxODEiIHI9IjUyLjAzMyIvPjxwYXRoIGQ9Im05MS41NzcgNDM1LjkxNnYtOS43NDVjLTkuNTQzLTExLjE1NS0yMy43MTMtMTguMjM1LTM5LjU0NS0xOC4yMzVzLTMwLjAwMSA3LjA4LTM5LjU0NSAxOC4yMzV2OS43NDVjMCA1LjM0Ni41NDcgMTAuNzEgMS42MjQgMTUuOTQ4bDIuODU0IDEzLjg2NGMzLjQxIDE2LjU2MSAxOC4xNTggMjguNTgxIDM1LjA2NiAyOC41ODFzMzEuNjU2LTEyLjAyIDM1LjA2Ni0yOC41ODFsMi44NTQtMTMuODY1YzEuMDc5LTUuMjM3IDEuNjI2LTEwLjYwMiAxLjYyNi0xNS45NDd6IiBmaWxsPSIjNTk1OTU5Ii8+PHBhdGggZD0ibTI5LjEzOCAzOTAuMjQ0djQ1LjY3MmMwIDQuMjMuNDMgOC40NDggMS4yODMgMTIuNTkxbDIuODU0IDEzLjg2M2MxLjgzMyA4LjkwMiA5LjY2OSAxNS4yODkgMTguNzU3IDE1LjI4OSA5LjA4OCAwIDE2LjkyNS02LjM4OCAxOC43NTctMTUuMjg5bDIuODU0LTEzLjg2M2MuODUzLTQuMTQzIDEuMjgzLTguMzYxIDEuMjgzLTEyLjU5MXYtNDUuNjcyeiIgZmlsbD0iI2JlYmViZSIvPjxjaXJjbGUgY3g9IjUyLjIxOCIgY3k9IjQ1OS45NjciIGZpbGw9IiM1OTU5NTkiIHI9IjYuMjQ0Ii8+PHBhdGggZD0ibTc0LjkyNyAzOTAuMjQ0aC00NS43ODljLTQuNTk4IDAtOC4zMjUtMy43MjctOC4zMjUtOC4zMjV2LTEwLjQwNmMwLTQuNTk4IDMuNzI3LTguMzI1IDguMzI1LTguMzI1aDQ1Ljc4OWM0LjU5OCAwIDguMzI1IDMuNzI3IDguMzI1IDguMzI1djEwLjQwNmMwIDQuNTk4LTMuNzI3IDguMzI1LTguMzI1IDguMzI1eiIgZmlsbD0iIzgxODE4MSIvPjxwYXRoIGQ9Im03NC45MjcgMzYzLjE4N2gtMjAuODEzYzQuNTk4IDAgOC4zMjUgMy43MjcgOC4zMjUgOC4zMjV2MTAuNDA2YzAgNC41OTgtMy43MjcgOC4zMjUtOC4zMjUgOC4zMjVoMjAuODEzYzQuNTk4IDAgOC4zMjUtMy43MjcgOC4zMjUtOC4zMjV2LTEwLjQwNmMwLTQuNTk4LTMuNzI3LTguMzI1LTguMzI1LTguMzI1eiIgZmlsbD0iIzU5NTk1OSIvPjxwYXRoIGQ9Im03NC45MjcgMjc0LjczMmgtNDUuNzg5Yy00LjU5OCAwLTguMzI1LTMuNzI3LTguMzI1LTguMzI1di0xMC40MDdjMC00LjU5OCAzLjcyNy04LjMyNSA4LjMyNS04LjMyNWg0NS43ODljNC41OTggMCA4LjMyNSAzLjcyNyA4LjMyNSA4LjMyNXYxMC40MDZjMCA0LjU5OC0zLjcyNyA4LjMyNi04LjMyNSA4LjMyNnoiIGZpbGw9IiM4MTgxODEiLz48cGF0aCBkPSJtNzQuOTI3IDI0Ny42NzVoLTIwLjgxM2M0LjU5OCAwIDguMzI1IDMuNzI3IDguMzI1IDguMzI1djEwLjQwNmMwIDQuNTk4LTMuNzI3IDguMzI1LTguMzI1IDguMzI1aDIwLjgxM2M0LjU5OCAwIDguMzI1LTMuNzI3IDguMzI1LTguMzI1di0xMC40MDZjMC00LjU5OC0zLjcyNy04LjMyNS04LjMyNS04LjMyNXoiIGZpbGw9IiM1OTU5NTkiLz48cGF0aCBkPSJtMjkuMTM4IDI3NC43MzJoNDUuNzg5djg4LjQ1NWgtNDUuNzg5eiIgZmlsbD0iI2M4ZWE3MyIvPjxwYXRoIGQ9Im01Ni4xOTUgMjc0LjczMmgxOC43MzJ2ODguNDU1aC0xOC43MzJ6IiBmaWxsPSIjOWJkMDY5Ii8+PC9nPjwvZz48L3N2Zz4K" />
+            <span style="font-weight: bolder">TrotinApp</span>
+            <span id="logout" style="position: absolute; right: 0; top: 15px">LOGOUT</span>
+        </h1>
+    </div>
 
-        for(var i = 0; i < Array.from(users.keys()).length; i++){
-            var posicao = users.get(Array.from(users.keys())[i]).posicaoAtual;
+    <div class="container text-center">
 
-            ctx.fillStyle = 'red';
-            /*ctx.fillRect(posicao.latitude, posicao.longitude, 10, 10);*/
-            ctx.beginPath();
-            ctx.arc(posicao.latitude, posicao.longitude, 1, 0, Math.PI *2, false);
-            ctx.fill();
-        }
+        <div class="row pb-5">
+            <div class="col-4 offset-1">
+                <div id="login">
+                    <h2 class="bg-primary text-white pb-2 pt-2">Login</h2>
+                    <form action="javascript:app.trotinapp.login(document.getElementById('email1').value, document.getElementById('password1').value)">
+                        <div class="form-group">
+                            <label for="email1">Email</label>
+                            <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password1">Password</label>
+                            <input type="password" class="form-control" id="password1" placeholder="Password">
+                        </div>
+                        <input name="Submit"  type="submit" value="Submeter" class="btn btn-primary">
+                    </form>
+                </div>
+            </div>
+            <div class="col-4 offset-2">
+                <div id="signup">
+                    <h2 class="bg-primary text-white pb-2 pt-2">SignUp</h2>
+                    <form action="javascript:app.trotinapp.addUser(document.getElementById('nome').value, document.getElementById('nif').value, document.getElementById('email2').value, document.getElementById('password2').value)">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" class="form-control" id="nome" placeholder="Nome">
+                        </div>
+                        <div class="form-group">
+                            <label for="nif">NIF</label>
+                            <input type="number" class="form-control" id="nif" placeholder="NIF">
+                        </div>
+                        <div class="form-group">
+                            <label for="email2">Email</label>
+                            <input type="email" class="form-control" id="email2" aria-describedby="emailHelp" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password2">Password</label>
+                            <input type="password" class="form-control" id="password2" placeholder="Password">
+                        </div>
+                        <input name="Submit"  type="submit" value="Submeter" class="btn btn-primary">
+                    </form>
+                </div>
+            </div>
 
-        console.log(app.trotinapp.trotinetes.getTrotinetesDisponiveis());
+        </div>
 
-        for (var i = 0; i < app.trotinapp.trotinetes.getTrotinetesDisponiveis().length; i++) {
-            var posicao = app.trotinapp.trotinetes.getTrotinetesDisponiveis()[i].posicaoAtual;
+    </div>
 
-            ctx.fillStyle = 'blue';
-            ctx.beginPath();
-            ctx.arc(posicao.latitude, posicao.longitude, 1, 0, Math.PI * 2, true);
-            ctx.fill();
-        }
 
-    </script>
+    <canvas style="width: 600px; height: 500px; background: yellowgreen" id="canvas"></canvas>
+
+    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+        <div class="container text-center">
+            <small>Footer</small>
+        </div>
+    </footer>
 </body>
+
+<script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext('2d');
+    var users = app.trotinapp.users.users;
+
+    for(var i = 0; i < Array.from(users.keys()).length; i++){
+        var posicao = users.get(Array.from(users.keys())[i]).posicaoAtual;
+
+        ctx.fillStyle = 'red';
+        /*ctx.fillRect(posicao.latitude, posicao.longitude, 10, 10);*/
+        ctx.beginPath();
+        ctx.arc(posicao.latitude, posicao.longitude, 1, 0, Math.PI *2, false);
+        ctx.fill();
+    }
+
+    console.log(app.trotinapp.trotinetes.getTrotinetesDisponiveis());
+
+    for (var i = 0; i < app.trotinapp.trotinetes.getTrotinetesDisponiveis().length; i++) {
+        var posicao = app.trotinapp.trotinetes.getTrotinetesDisponiveis()[i].posicaoAtual;
+
+        ctx.fillStyle = 'blue';
+        ctx.beginPath();
+        ctx.arc(posicao.latitude, posicao.longitude, 1, 0, Math.PI * 2, true);
+        ctx.fill();
+    }
+
+    app.trotinapp.addUser("Rui", 23423, "2");
+    var user = users.get("2");
+    var trotinete = app.trotinapp.trotinetes.trotinetes[0];
+    app.trotinapp.iniciarReserva(user, trotinete);
+
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </html>

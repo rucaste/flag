@@ -9,3 +9,8 @@ function Posicao(latitude, longitude) {
         return Math.sqrt((this.latitude - posicao.latitude ) ** 2 + (this.longitude - posicao.longitude ) ** 2);
     }
 }
+
+
+Posicao.prototype.move = function(deltaX, deltaY){
+    return new Posicao(this.latitude + deltaX, this.longitude + deltaY, Date.now());
+};
