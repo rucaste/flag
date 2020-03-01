@@ -14,3 +14,8 @@ function Posicao(latitude, longitude) {
 Posicao.prototype.move = function(deltaX, deltaY){
     return new Posicao(this.latitude + deltaX, this.longitude + deltaY, Date.now());
 };
+
+
+Posicao.prototype.str = function(){
+    return '(' + Math.floor(this.latitude) + ', ' + Math.floor(this.longitude) + ')';
+};

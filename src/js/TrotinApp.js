@@ -26,6 +26,8 @@ class TrotinApp{
 
     }
 
+    // Gerir autenticação
+
     checkPassword(email, password){
         return this.users.users.get(email).password === password;
     }
@@ -37,17 +39,39 @@ class TrotinApp{
         }
         else if(this.checkPassword(email, password)){
             this.userAtual = this.users.users.get(email);
+            this.updateGUI();
             alert("Login com sucesso.\nBem vindo à Trotinapp");
         }
         else {
             alert("Password errada!!\nPor favor tente de novo.");
         }
+        this.updateGUI();
     }
 
     addUser(nome, nif, email, password){
         var id = this.users.users.size + 1;
-        this.users.users.set(email, new User(id, nome, nif, email, password))
+        this.users.users.set(email, new User(id, nome, nif, email, password));
+        //alert('Ben vindo à Trotinapp\nUtilizador criado com sucesso.')
+        this.updateGUI();
     }
+
+    logout(){
+        if(this.userAtual.comReserva){
+            alert('Ainda tem uma reserva ativa!! \nPor favor, finalize a reserva ativa antes de fazer logout.')
+        }
+        else {
+            this.userAtual = null;
+            this.updateGUI();
+        }
+    }
+
+    updateGUI(){
+        this.gui.updateGUI()
+    }
+
+    // Gerir reservas
+
+
 
     getReservasdFromUser(email){
         return this.users.users.get(email).historicoDeReservas.reservas;
