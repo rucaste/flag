@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f55c8a3d-d9d4-4b5d-bf0c-aa1595dda5b5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/js/Gui.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/Posicao.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/Posicao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/Gui.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/Gui.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/js/TrotinApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/TrotinApp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/js/Trotinetes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/Trotinetes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +70,7 @@
       <workItem from="1582741838564" duration="10034000" />
       <workItem from="1582930871691" duration="16148000" />
       <workItem from="1583079534881" duration="8151000" />
-      <workItem from="1583096345724" duration="1269000" />
+      <workItem from="1583096345724" duration="4772000" />
     </task>
     <servers />
   </component>

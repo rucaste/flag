@@ -13,6 +13,8 @@ function Gui(trotinapp) {
     this.canvas_lista1 = document.getElementById("canvas_lista1");
     this.localizacao_atual = document.getElementById("localizacao_atual");
     this.canvas_table1_body = document.getElementById("canvas_table1_body");
+    this.canvas_table2_body = document.getElementById("canvas_table2_body");
+    this.trotinete_form = document.getElementById("trotinete_form");
 
 
 }
@@ -55,15 +57,25 @@ Gui.prototype.updateCanvasDiv = function () {
 
             this.localizacao_atual.innerHTML = "user: " + user.email + " - Localização atual: " + posicao.str()+  " - Saldo: " + user.saldo +  " €";
             this.canvas_table1_body.innerHTML = '';
+            this.trotinete_form.innerHTML = '';
 
             for (var i = 0; i < trotintes.length; i++) {
                 posicao = trotintes[i].posicaoAtual;
+                var id = trotintes[i].id;
                 this.ctx.fillStyle = 'blue';
                 this.ctx.beginPath();
                 this.ctx.arc(posicao.latitude, posicao.longitude, 1, 0, Math.PI * 2, true);
                 this.ctx.fill();
 
                 this.canvas_table1_body.innerHTML += '<tr><td>' + trotintes[i].id + '</td><td>' + posicao.str() + '</td><td>' + trotintes[i].nivelCarga + '</td></tr>';
+                this.trotinete_form.innerHTML += '<option value="' +id + '">' + id + '</option>';
+            }
+
+            var reservas =  user.historicoDeReservas.reservas;
+            for (var i = 0; i < reservas.length; i++) {
+                var reserva = reservas[i];
+
+                this.canvas_table2_body.innerHTML += '<tr><td>' + reserva.id + '</td></tr>';
             }
         }
         else {

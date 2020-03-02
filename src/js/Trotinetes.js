@@ -1,16 +1,21 @@
 
 function Trotinetes() {
 
-    this.trotinetes = [];
+    this.trotinetes = new Map();
+
+    this.getTrotinete = function (id) {
+        return this.trotinetes.get(id)
+    }
 
 }
 
 
 Trotinetes.prototype.getTrotinetesDisponiveis = function () {
     var td = [];
-    for(var i = 0; i < this.trotinetes.length; i++){
-        if(this.trotinetes[i].isDisponivel){
-            td.push(this.trotinetes[i])
+    var array_set = Array.from(this.trotinetes.keys());
+    for(var i = 0; i < array_set.length; i++){
+        if(this.trotinetes.get(array_set[i]).isDisponivel){
+            td.push(this.trotinetes.get(array_set[i]))
         }
     }
     return td;

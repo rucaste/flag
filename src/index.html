@@ -81,7 +81,7 @@
         <div class="row">
             <canvas class="col-8" style="width: 1000px; height: 500px; background: yellowgreen" id="canvas"></canvas>
             <div class="col-4 text-left table-responsive " id="canvas_lista1">
-                <h2 class="bg-light">Trotinetes dsponíveis</h2>
+                <h4 class="bg-dark text-center text-white p-2">Trotinetes disponíveis</h4>
                 <table class="table table-bordered table-hover table-striped block">
                     <thead class="thead-dark">
                         <th>ID</th>
@@ -95,26 +95,23 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-4 text-left table-responsive" id="reservas">
-                <h2 class="bg-dark text-white">Reservar</h2>
-                <form action="javascript:app.trotinapp.login(document.getElementById('email1').value, document.getElementById('password1').value)">
+            <div class="col-4 text-left table-responsive text-center p-2 mb-2" id="reservas">
+                <form action="javascript:app.trotinapp.iniciarReserva(document.getElementById('trotinete_form').value)">
                     <div class="form-group">
-                        <label for="trotinete">Trotinete</label>
-                        <select id="trotinete" name="trotinete">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select>
+                        <label for="trotinete_form" class="bg-dark text-white btn-lg btn-block">Trotinete n.º</label>
+                        <select class="form-control"  id="trotinete_form" name="trotinete"></select>
                     </div>
-                    <input name="Submit"  type="submit" value="Submeter" class="btn btn-primary btn-lg" >
+                    <input name="Submit"  type="submit" value="Iniciar Reserva" class="btn btn-dark btn-lg btn-block" >
                 </form>
             </div>
             <div class="col-8 text-left table-responsive ">
-                <h2 class="bg-light">Trotinetes dsponíveis</h2>
+                <h4 class="bg-dark text-center text-white p-2">Histórico de Reservas</h4>
                 <table class="table table-bordered table-hover table-striped block">
                     <thead class="thead-dark">
-                    <th>ID</th>
-                    <th>Localização</th>
-                    <th>Carga</th>
+                    <th>Data</th>
+                    <th>Trotinete</th>
+                    <th>Duração (min)</th>
+                    <th>km percorridos</th>
                     </thead>
                     <tbody id="canvas_table2_body">
 

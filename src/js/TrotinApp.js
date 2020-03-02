@@ -13,8 +13,8 @@ class TrotinApp{
         }
 
         for(var i = 0; i < 15; i++){
-            var trot = new Trotinete(i, this.modelos[Math.floor(Math.random() * 3)])
-            this.trotinetes.trotinetes.push(trot);
+            var trot = new Trotinete(i, this.modelos[Math.floor(Math.random() * 3)]);
+            this.trotinetes.trotinetes.set(i, trot);
             trot.isDisponivel = Math.floor(Math.random() + 0.5);
         }
 
@@ -81,15 +81,16 @@ class TrotinApp{
         return this.trotinetes.getTrotinetesDisponiveis()
     }
 
-    iniciarReserva(user, trotinete){
+    iniciarReserva(trotinete_id){
+        var user = this.userAtual;
         if(user.comReserva){
             alert('Este utilizador já tem uma reserva ativa')
         }
         else {
-            var newReserva = new Reserva(user, trotinete);
+            var newReserva = new Reserva(user, this.trotinetes.getTrotinete(trotinete_id));
             user.historicoDeReservas.reservas.push(newReserva);
             user.comReserva=true;
-            newReserva.init();
+            //newReserva.init();
         }
     }
 
