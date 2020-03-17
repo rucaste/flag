@@ -1,102 +1,100 @@
 
 
-class TrotinApp{
+class TrotinApp {
     constructor() {
-        this.userAtual = null;
+        this.userAtual = null; // Tirar
         this.trotinetes = new Trotinetes();
         this.modelos = new Modelos();
         this.users = new Users();
-        for(var i = 0; i < 3; i++){
+
+        this.listeners = new Set();
+
+        for (var i = 0; i < 3; i++) {
             this.modelos.modelos.push(new Modelo("Marca " + (i + 1), "Modelo",
-                Math.floor(5 + Math.random()*10)*100,
-                Math.floor(25 + Math.random()*20)*100))
+                Math.floor(5 + Math.random() * 10) * 100,
+                Math.floor(25 + Math.random() * 20) * 100))
         }
 
-        for(var i = 0; i < 15; i++){
+        for (var i = 0; i < 20; i++) {
             var trot = new Trotinete(i, this.modelos[Math.floor(Math.random() * 3)]);
             this.trotinetes.trotinetes.set(i, trot);
             trot.isDisponivel = Math.floor(Math.random() + 0.5);
         }
 
-        for(var i = 0; i < 5; i++){
+        for (var i = 0; i < 10; i++) {
             var nome = names[Math.floor(Math.random() * names.length)]
             this.users.users.set(nome + "@fdsioj.com",
                 new User(i, nome, Math.floor(Math.random() * 30000000 + 200000000), nome + "@fdsioj.com", nome + "@fdsioj.com"))
         }
-
     }
 
-    // Gerir autenticação
 
-    checkPassword(email, password){
+    registarListener(listener) {
+        this.listeners.add(listener);
+    }
+
+    // Users
+
+    checkPassword(email, password) {
         return this.users.users.get(email).password === password;
     }
 
-    login(email, password){
+    login(email, password) {
         var user = this.users.users.get(email);
-        if(!user){
+        if (!user) {
             alert("Este email não está registado na aplicação!\nCorriga o email ou fala um novo registo.");
         }
-        else if(this.checkPassword(email, password)){
+        else if (this.checkPassword(email, password)) {
             this.userAtual = this.users.users.get(email);
-            this.updateGUI();
             alert("Login com sucesso.\nBem vindo à Trotinapp");
         }
         else {
             alert("Password errada!!\nPor favor tente de novo.");
         }
-        this.updateGUI();
     }
 
-    addUser(nome, nif, email, password){
+    addUser(nome, nif, email, password) {
         var id = this.users.users.size + 1;
         this.users.users.set(email, new User(id, nome, nif, email, password));
-        //alert('Ben vindo à Trotinapp\nUtilizador criado com sucesso.')
-        this.updateGUI();
+        alert('Ben vindo à Trotinapp\nUtilizador criado com sucesso.')
     }
 
-    logout(){
-        if(this.userAtual.comReserva){
+    logout() {
+        if (this.userAtual.comReserva) {
             alert('Ainda tem uma reserva ativa!! \nPor favor, finalize a reserva ativa antes de fazer logout.')
         }
         else {
             this.userAtual = null;
-            this.updateGUI();
         }
     }
 
-    updateGUI(){
-        this.gui.updateGUI()
-    }
 
-    // Gerir reservas
+    // Reservas
 
-
-
-    getReservasdFromUser(email){
+    getReservasdFromUser(email) {
         return this.users.users.get(email).historicoDeReservas.reservas;
     }
 
-    getTrotinetesDisponiveis(){
+    getTrotinetesDisponiveis() {
         return this.trotinetes.getTrotinetesDisponiveis()
     }
 
-    iniciarReserva(trotinete_id){
+    iniciarReserva(trotinete_id) {
         var user = this.userAtual;
-        if(user.comReserva){
+        if (user.comReserva) {
             alert('Este utilizador já tem uma reserva ativa')
         }
         else {
             var newReserva = new Reserva(user, this.trotinetes.getTrotinete(trotinete_id));
             user.historicoDeReservas.reservas.push(newReserva);
-            user.comReserva=true;
+            user.comReserva = true;
             //newReserva.init();
         }
     }
 
-    concluirReserva(user){
-        for(var i = user.historicoDeReservas.reservas.length - 1; i >= 0; i--){
-            if(!user.historicoDeReservas.reservas[i].concluido){
+    concluirReserva(user) {
+        for (var i = user.historicoDeReservas.reservas.length - 1; i >= 0; i--) {
+            if (!user.historicoDeReservas.reservas[i].concluido) {
                 var reservaFim = user.historicoDeReservas.reservas[i];
                 reservaFim.concluir();
                 alert(reservaFim.getFinalMessage());

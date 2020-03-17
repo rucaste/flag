@@ -3,6 +3,7 @@
 function Gui(trotinapp) {
 
     this.trotinapp = trotinapp;
+    this.trotinapp.registarListener(this);
 
     this.logout = document.getElementById("logout");
     this.login_div =  document.getElementById("login_div");
@@ -16,8 +17,59 @@ function Gui(trotinapp) {
     this.canvas_table2_body = document.getElementById("canvas_table2_body");
     this.trotinete_form = document.getElementById("trotinete_form");
 
+    document.getElementById("signup_form").addEventListener("submit", this.addUser.bind(this));
+    document.getElementById("login_form").addEventListener("submit", this.login.bind(this));
+    document.getElementById("reserva_form").addEventListener("submit", this.iniciarReserva.bind(this));
 
 }
+
+
+// Metodos (API)
+
+Gui.prototype.login = function(evento){
+    evento.preventDefault(); 
+	var form = evento.target;
+    this.trotinapp.login(form["email1"].value, form["password1"].value);
+    this.updateGUI();
+}
+
+Gui.prototype.addUser = function(evento){
+    evento.preventDefault(); 
+	var form = evento.target;
+    this.trotinapp.addUser(form["nome"].value, form["nif"].value, form["email2"].value, form["password2"].value);
+    this.updateGUI();
+}
+
+Gui.prototype.logout = function(){
+    if(this.trotinapp.userAtual.comReserva){
+        alert('Ainda tem uma reserva ativa!! \nPor favor, finalize a reserva ativa antes de fazer logout.')
+    }
+    else {
+        this.trotinapp.userAtual = null;
+        this.updateGUI();
+    }
+}
+
+Gui.prototype.iniciarReserva = function(evento){
+    evento.preventDefault(); 
+	var form = evento.target;
+    this.trotinapp.iniciarReserva(form["trotinete_form"].value);
+    this.updateGUI();
+}
+
+Gui.prototype.concluirReserva = function(user){
+    for(var i = user.historicoDeReservas.reservas.length - 1; i >= 0; i--){
+        if(!user.historicoDeReservas.reservas[i].concluido){
+            var reservaFim = user.historicoDeReservas.reservas[i];
+            reservaFim.concluir();
+            alert(reservaFim.getFinalMessage());
+            break;
+        }
+    }
+}
+
+
+// Render
 
 Gui.prototype.updateLogout = function () {
     if(!this.trotinapp.userAtual){

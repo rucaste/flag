@@ -2,7 +2,8 @@
 class App{
     constructor() {
         this.trotinapp = new TrotinApp();
+        this.gui = null;
     }
 }
 
-var app = new App();
+
